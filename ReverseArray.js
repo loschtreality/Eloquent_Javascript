@@ -10,10 +10,10 @@ var newArray = [];
 
 function reverseArrayInPlace(array) {
 var temp;
-for (var j = 0; j < array.length; j++) {
-  for (var i = array.length-1; i >= 0; i--) {
-    //needs work
-    }
+for (var i = 0; i < array.length/2; i++) {
+    temp = array[i];
+    array[i] = array[array.length-i-1];
+    array[array.length-i-1] = temp;
   }
   return array;
 }
