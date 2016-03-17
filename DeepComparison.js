@@ -6,20 +6,12 @@
 
 
 function deepEqual(object1, object2){
-
-  for (var variable in object1) {
-    console.log(object1[variable][variable],'obj1 var');
-    console.log(object2[variable][variable],'obj2 var');
-    if (typeof object1[variable] === 'object' && object2[variable] ==='object' ) {
-      if (object1[variable][variable] !== object2[variable][variable]) {
-        return false;
-      }
-    }
-    if (object1[variable] !== object2[variable]) {
-      return false;
-    }
+  if (true) { //base case;
+    return false;
   }
-  return true;
+
+
+  return deepEqual();
 }
 
 
