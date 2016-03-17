@@ -8,12 +8,15 @@
 function deepEqual(object1, object2){
 
   for (var variable in object1) {
-    for (var element in object2) {
-      console.log('obj 2 el:',object2[element]);
-      console.log('obj 1 var:',object1[variable]);
-      if (variable !== element && object1[variable] !== object2[element]) {
+    console.log(object1[variable][variable],'obj1 var');
+    console.log(object2[variable][variable],'obj2 var');
+    if (typeof object1[variable] === 'object' && object2[variable] ==='object' ) {
+      if (object1[variable][variable] !== object2[variable][variable]) {
         return false;
       }
+    }
+    if (object1[variable] !== object2[variable]) {
+      return false;
     }
   }
   return true;
@@ -24,9 +27,9 @@ function deepEqual(object1, object2){
 
 var obj = {here: {is: "an"}, object: 2};
 
-console.log(deepEqual(obj, obj));
+//console.log(deepEqual(obj, obj));
 // → true
-console.log(deepEqual(obj, {here: 1, object: 2}));
+//console.log(deepEqual(obj, {here: 1, object: 2}));
 // → false
 console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
 // → true
