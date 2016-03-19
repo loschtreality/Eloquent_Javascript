@@ -12,12 +12,12 @@ function deepEqual(object1, object2){
   for (var variable in object1) {
     if (typeof object1[variable] === 'object' && typeof object2[variable] === 'object') {
       for(var key in object1[variable]){
-        console.log(object1[variable][key],'asdof');
+
         if (object1[variable][key]) {
 
         }
       }
-    } //asdfasdf
+    } //
 
   }//loop
 return 'x';
