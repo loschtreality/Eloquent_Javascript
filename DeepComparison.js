@@ -23,7 +23,7 @@ var keys2 = Object.keys(object2);
 
   for(var key in object1){
     //If objects are nested, save in array and move to next loop
-    if (typeof object1[key] === 'object' && typeof object1[key] === 'object') {
+    if (typeof object1[key] === 'object' && typeof object2[key] === 'object') {
       nestedObjects.push(object1[key],object2[key]);
     }
     //compare object values
@@ -32,14 +32,12 @@ var keys2 = Object.keys(object2);
     }
   } //loop end
 
-  if (nestedObjects.length %2 !== 0 && nestedObjects.length > 0) {
-    return false;
-  }
-
 
   //If nested objects, recursively call function
   if (nestedObjects.length > 2) {
-    return deepEqual(nestedObjects[0],nestedObjects[1]);
+    for (var j = nestedObjects.length; j > 0; j--) {
+      deepEqual(nestedObjects[j],nestedObjects[j-1]);
+    }
   }
 
   return true;
@@ -49,10 +47,17 @@ var keys2 = Object.keys(object2);
 
 
 var obj = {here: {is: "an"}, object: 2};
+var obj2 = {here: {is: "an"}, object: 2};
+var obj3 = {here: {is: "an"}, object: {val:'value'}, third: {key1: 'a', key2: {key3: {key4:'3'}}}};
+var obj4 = {here: {is: "an"}, object: {val:'value'}, third: {key1: 'a', key2: {key3: {key4:'4'}}}};
 
-//console.log(deepEqual(obj, obj));
-// → true
-console.log(deepEqual(obj, {here: 1, object: 2}));
-// → false
-//console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
-// → true
+//console.log(deepEqual(obj, obj)); // → true
+
+//console.log(deepEqual(obj, {here: 1, object: 2})); // → false
+
+//console.log(deepEqual(obj, {here: {is: "an"}, object: 2})); // → true
+
+
+
+//console.log(deepEqual(obj2, {here: {is: {not:'no'}}, object: 2})); // → true
+console.log(deepEqual(obj3, obj4)); // → false
