@@ -12,3 +12,27 @@ function average(array) {
   function plus(a, b) { return a + b; }
   return array.reduce(plus) / array.length;
 }
+
+
+function hist_exp(arr_obj) {
+  var century = {}
+
+  arr_obj.forEach(function(person){
+    var era = Math.ceil(person.died/100)
+    if (!century[era]) {
+      century[era] = []
+    }
+
+    century[era].push(person.died - person.born)
+
+  })
+
+  for (var ages in century) {
+    century[ages] = average(century[ages]).toFixed(1)
+  }
+
+  return century
+}
+
+
+console.log(hist_exp(ancestry));
