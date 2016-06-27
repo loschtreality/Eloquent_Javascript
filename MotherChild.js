@@ -19,27 +19,11 @@ ancestry.forEach(function(person) {
 
 //compute the average age difference between mothers and children (the age of the mother when the child is born)
 function motherChild(arr_obj) {
-  var diff = []
-
   // Filter the children with mothers
-  var child_with_mom = arr_obj.filter(function (child) {
-    if (child.mother !== null) return child;
-  })
-
-  // Get a list of mothers with defined born dates
-  var moms = child_with_mom.map(function (child) {
-    return byName[child.mother]
-  }).filter(function (el) {
-    return el !== undefined
-  })
-
-  // Loop through the children and match with mother, find the difference and push into diff array
-  child_with_mom.forEach(function (child) {
-    moms.forEach(function (mom) {
-      if (child.mother === mom.name) {
-        diff.push(child.born - mom.born)
-      }
-    })
+  var diff = arr_obj.filter(function (child) {
+    return byName[child.mother] != null
+  }).map(function (child) {
+    return child.born - byName[child.mother].born
   })
 
   // Call the average on the differences in age
